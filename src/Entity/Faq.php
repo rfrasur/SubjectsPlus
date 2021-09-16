@@ -62,6 +62,8 @@ class Faq
      */
     private $faqSubject;
 
+
+
     /**
      * @var ArrayCollection
      *

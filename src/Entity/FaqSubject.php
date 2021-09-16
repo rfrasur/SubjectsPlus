@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * FaqSubject.
@@ -41,6 +42,14 @@ class FaqSubject
      */
     private $subject;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     * @var integer $position
+     *
+     * @Gedmo\SortablePosition()
+     */
+    private $position;
+
     public function getFaqSubjectId(): ?int
     {
         return $this->faqSubjectId;
@@ -72,5 +81,25 @@ class FaqSubject
 
     public function __toString(): string {
         return "Entity: FaqSubject, Id: " . $this->getFaqSubjectId();
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getPosition(): ?int
+    {
+        return $this->position;
+    }
+
+    /**
+     * @param int|null $position
+     *
+     * @return $this
+     */
+    public function setPosition(?int $position): self
+    {
+        $this->position = $position;
+
+        return $this;
     }
 }

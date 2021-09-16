@@ -5,11 +5,12 @@
 {% block body %}
     <h1>FAQs by Subject</h1>
     
-    {% for name, subject in subject_faqs %}
-        <h2>{{ name | raw}}</h2>
-        <table class="table">
+    {% for key, subject in subject_faqs %}
+        <h2>{{ dump(subject_faqs) }} </h2>
+        <table class="table sortable">
             <thead>
                 <tr>
+                    <th>Position</th>
                     <th>FaqId</th>
                     <th>Question</th>
                     <th>Answer</th>
@@ -20,7 +21,8 @@
             </thead>
             <tbody>
             {% for faq in subject %}
-                <tr>
+                <tr draggable="true" rel="">
+                    <td></td>
                     <td>{{ faq.faqId }}</td>
                     <td>{{ faq.question | raw }}</td>
                     <td>{{ faq.answer | raw }}</td>

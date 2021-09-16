@@ -56,6 +56,7 @@ class FaqRepository extends ServiceEntityRepository
     {
         $query = $this->baseQuery();
         $query->innerJoin('f.faqSubject', 'fs');
+        $query->orderBy('fs.position', 'ASC');
         $query->addCriteria(Criteria::create()->where(Criteria::expr()->eq("fs.subject", $subject)));
         if ($active !== null && ($active == 0 || $active == 1))
             $query->addCriteria(Criteria::create()->where(Criteria::expr()->eq("f.active", $active)));
@@ -98,7 +99,7 @@ class FaqRepository extends ServiceEntityRepository
     private function baseQuery(): QueryBuilder
     {
         return $this->createQueryBuilder('f', 'f.faqId')
-        ->select('f');
+        ->select('f', 'fs');
     }
 
 }
